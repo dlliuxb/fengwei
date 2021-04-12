@@ -168,6 +168,10 @@ angular.module('myApp', []).controller('fengWeiMiaoShuCtrl', [
 			alert('Compound不能为空');
 			return false;
 		}
+		if (!isNum($scope.femaNo) ) {
+			alert('FEMA No应该是数字');
+			return false;
+		}
 		return true;
 	}
  
@@ -255,3 +259,17 @@ angular.module('myApp', []).controller('fengWeiMiaoShuCtrl', [
 	};
 	
 	} ])
+	
+	function isNum(value) {
+		var result = false;
+		if (!value || value=="") {
+			return null;
+		}
+		result = true;
+		if (value.trim().match(/^[0-9]*$/)) {
+			result = true;
+		} else {
+			result = false;
+		}
+		return result;
+	}
