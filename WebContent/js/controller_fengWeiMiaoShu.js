@@ -95,6 +95,11 @@ angular.module('myApp', []).controller('fengWeiMiaoShuCtrl', [
                   var results = response.data.data;
 				  console.log(results);
                   $scope.fengWeiMiaoShuModel = results;
+					for (var i=0; i<$scope.fengWeiMiaoShuModel.length; i++) {
+						if ($scope.fengWeiMiaoShuModel[i].femaNo == 0) {
+							$scope.fengWeiMiaoShuModel[i].femaNo = '';
+						}
+					}
 				  if (results && results.length == 0) {
 					$('#msg').html("返回0条结果");
 				  } else {
@@ -166,6 +171,10 @@ angular.module('myApp', []).controller('fengWeiMiaoShuCtrl', [
 		}
 		if ($scope.compound == null || $scope.compound == '') {
 			alert('Compound不能为空');
+			return false;
+		}
+		if ($scope.femaNo != '' && !isNum($scope.femaNo) ) {
+			alert('FEMA No应该是数字');
 			return false;
 		}
 		return true;
@@ -255,3 +264,17 @@ angular.module('myApp', []).controller('fengWeiMiaoShuCtrl', [
 	};
 	
 	} ])
+	
+	function isNum(value) {
+		var result = false;
+		if (!value || value=="") {
+			return null;
+		}
+		result = true;
+		if (value.trim().match(/^[0-9]*$/)) {
+			result = true;
+		} else {
+			result = false;
+		}
+		return result;
+	}
