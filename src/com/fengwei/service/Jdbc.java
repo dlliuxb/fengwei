@@ -70,10 +70,15 @@ public class Jdbc {
 				sql += " CAS like '%" + cas + "%'";
 			}
 			if (!compound.isEmpty() && !"".equals(compound)) {
+				String compoundRep = compound;
+				if (compound.contains("'")) {
+					String regexp = "\'";
+					compoundRep = compound.replaceAll(regexp, "''");
+				}
 				if (!cas.isEmpty()) {
-					sql += " AND COMPOUND like '%" + compound + "%'";
+					sql += " AND COMPOUND like '%" + compoundRep + "%'";
 				} else {
-					sql += " COMPOUND like '%" + compound + "%'";
+					sql += " COMPOUND like '%" + compoundRep + "%'";
 				}
 			}
 			if (!formula.isEmpty() && !"".equals(formula)) {
@@ -137,10 +142,15 @@ public class Jdbc {
 				sql += " CAS like '%" + cas + "%'";
 			}
 			if (!compound.isEmpty() && !"".equals(compound)) {
+				String compoundRep = compound;
+				if (compound.contains("'")) {
+					String regexp = "\'";
+					compoundRep = compound.replaceAll(regexp, "''");
+				}
 				if (!cas.isEmpty()) {
-					sql += " AND COMPOUND like '%" + compound + "%'";
+					sql += " AND COMPOUND like '%" + compoundRep + "%'";
 				} else {
-					sql += " COMPOUND like '%" + compound + "%'";
+					sql += " COMPOUND like '%" + compoundRep + "%'";
 				}
 			}
 			sql = sql.replace("\"", "");
@@ -181,7 +191,7 @@ public class Jdbc {
 			String fengweiId = params.get("FENGWEI_ID") != null ? params.get("FENGWEI_ID").toString() : "";
 			String cas = params.get("CAS") != null ? params.get("CAS").toString() : "";
 			String femaNoStr = params.get("FEMA_NO") != null ? params.get("FEMA_NO").toString() : "";
-			int femaNo = !StringUtils.isNullOrEmpty(femaNoStr) ? Integer.valueOf(femaNoStr) : null;
+			int femaNo = !StringUtils.isNullOrEmpty(femaNoStr) ? Integer.valueOf(femaNoStr) : 0;
 			String compound = params.get("COMPOUND") != null ? params.get("COMPOUND").toString() : "";
 			String synonyms = params.get("SYNONYMS") != null ? params.get("SYNONYMS").toString() : "";
 			String formula = params.get("FORMULA") != null ? params.get("FORMULA").toString() : "";
