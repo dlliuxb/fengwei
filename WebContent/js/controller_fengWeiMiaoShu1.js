@@ -1,58 +1,61 @@
-angular.module('myApp', []).controller('yuZhiCtrl', [
+angular.module('myApp', []).controller('fengWeiMiaoShuCtrl', [
     '$scope',
     '$compile',
+	'$document',
     '$http',
     '$timeout',
-    function($scope, $compile, $http, $timeout) {
-	$scope.yuzhiId = '';
+    function($scope, $compile, $document, $http, $timeout) {
+	$scope.fengweiId = '';
 	$scope.cas = '';
+	$scope.femaNo = '';
 	$scope.compound = '';
-	$scope.thredW = '';
-	$scope.definition1 = '';
-	$scope.ref1 = '';
-	$scope.thredA = '';
-	$scope.definition2 = '';
-	$scope.ref2 = '';
-	$scope.thredO = '';
-	$scope.definition3 = '';
-	$scope.ref3 = '';
+	$scope.synonyms = '';
+	$scope.formula = '';
+	$scope.rin = '';
+	$scope.rip = '';
+	$scope.category = '';
+	$scope.origin = '';
+	$scope.flavorDesc = '';
+	$scope.ref = '';
+	$scope.user='';
+	$scope.password='';
 	$scope.admin = false;
-	$scope.yuZhiModel = [
+	
+	$scope.fengWeiMiaoShuModel = [
+
 	];
 	$scope.desc = 0;
 	$scope.edit = false;
 	$scope.error = true;
-	$scope.incomplete = false; 
-	$scope.editYuZhi = function(id) {
+	$scope.editFengWeiMiaoShu = function(id) {
   		if (id == 'new') {
     		$scope.edit = false;
-    		$scope.incomplete = true;
-    		$scope.yuzhiId = '';
+    		$scope.fengweiId = '';
 			$scope.cas = '';
+			$scope.femaNo = '';
 			$scope.compound = '';
-			$scope.thredW = '';
-			$scope.definition1 = '';
-			$scope.ref1 = '';
-			$scope.thredA = '';
-			$scope.definition2 = '';
-			$scope.ref2 = '';
-			$scope.thredO = '';
-			$scope.definition3 = '';
-			$scope.ref3 = '';
+			$scope.synonyms = '';
+			$scope.formula = '';
+			$scope.rin = '';
+			$scope.rip = '';
+			$scope.category = '';
+			$scope.origin = '';
+			$scope.flavorDesc = '';
+			$scope.ref = '';
     	} else {
     		$scope.edit = true;
-    		$scope.yuzhiId = $scope.yuZhiModel[id-1].yuzhiId;
-			$scope.cas = $scope.yuZhiModel[id-1].cas;
-			$scope.compound = $scope.yuZhiModel[id-1].compound;
-			$scope.thredW = $scope.yuZhiModel[id-1].thredW;
-			$scope.definition1 = $scope.yuZhiModel[id-1].definition1;
-			$scope.ref1 = $scope.yuZhiModel[id-1].ref1;
-			$scope.thredA = $scope.yuZhiModel[id-1].thredA;
-			$scope.definition2 = $scope.yuZhiModel[id-1].definition2;
-			$scope.ref2 = $scope.yuZhiModel[id-1].ref2;
-			$scope.thredO = $scope.yuZhiModel[id-1].thredO;
-			$scope.definition3 = $scope.yuZhiModel[id-1].definition3;
-			$scope.ref3 = $scope.yuZhiModel[id-1].ref3;
+    		$scope.fengweiId = $scope.fengWeiMiaoShuModel[id-1].fengweiId;
+			$scope.cas = $scope.fengWeiMiaoShuModel[id-1].cas;
+			$scope.femaNo = $scope.fengWeiMiaoShuModel[id-1].femaNo;
+			$scope.compound = $scope.fengWeiMiaoShuModel[id-1].compound;
+			$scope.synonyms = $scope.fengWeiMiaoShuModel[id-1].synonyms;
+			$scope.formula = $scope.fengWeiMiaoShuModel[id-1].formula;
+			$scope.rin = $scope.fengWeiMiaoShuModel[id-1].rin;
+			$scope.rip = $scope.fengWeiMiaoShuModel[id-1].rip;
+			$scope.category = $scope.fengWeiMiaoShuModel[id-1].category;
+			$scope.origin = $scope.fengWeiMiaoShuModel[id-1].origin;
+			$scope.flavorDesc = $scope.fengWeiMiaoShuModel[id-1].flavorDesc;
+			$scope.ref = $scope.fengWeiMiaoShuModel[id-1].ref;
   		}
 	};
 
@@ -80,7 +83,7 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
           }
         }
 		params.process = 'SEARCH';
-		params.entityType = 'yuZhi';
+		params.entityType = 'fengWeiMiaoShu';
 		console.log(params);
         $http({
           url : 'process',
@@ -91,14 +94,17 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
 			if (response.data.success) {
                   var results = response.data.data;
 				  console.log(results);
-                  $scope.yuZhiModel = results;
+                  $scope.fengWeiMiaoShuModel = results;
+					for (var i=0; i<$scope.fengWeiMiaoShuModel.length; i++) {
+						if ($scope.fengWeiMiaoShuModel[i].femaNo == 0) {
+							$scope.fengWeiMiaoShuModel[i].femaNo = '';
+						}
+					}
 				  if (results && results.length == 0) {
 					$('#msg').html("返回0条结果");
 				  } else {
 					$('#msg').html("");
 				  }
-			} else {
-				$('#msg').html("搜索失败，请过后再试或联系管理员");
 			}
         }, function(response) {
           console.log('search - error');
@@ -109,83 +115,51 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
       };
 
 	$scope.preExecCreateUpdate = function() {
-		if (!$scope.yuzhiId || $scope.yuzhiId == '') {
-			var params = {};
-        	params.cas = $scope.cas;
-			params.process = 'SEARCH';
-			params.entityType = 'yuZhi';
-			console.log(params);
-	        $http({
-	          url : 'process',
-	          method : 'POST',
-	          params : params
-	        }).then(function(response) {
-	          console.log('search - success');
-				if (response.data.success) {
-	                  var results = response.data.data;
-					  console.log(results);
-					  if (results && results.length == 0) {
-						// do nothing
-					  } else {
-						$('#msg').html("CAS已经存在");
-						alert("CAS已经存在");
-						return;
-					  }
-				}
-	        }, function(response) {
-			  $('#msg').html("检查CAS失败，请过后再试或联系管理员");
-			  return;
-	        });
-		}
 		var ok = $scope.validateOnCreUpd();
 		if (ok) {
+			$('#msg').html("");
 			$scope.execCreateUpdate();
 		} else {
-			alert("请检查输入");
+			$('#msg').html("请检查输入");
 		}
 	}
 
 	$scope.execCreateUpdate = function() {
 		console.log("execCreateUpdate...");
         var params = {};
-		params.YUZHI_ID = $scope.yuzhiId;
+		params.FENGWEI_ID = $scope.fengweiId;
         params.CAS = $scope.cas;
+        params.FEMA_NO = $scope.femaNo;
         params.COMPOUND = $scope.compound;
-        params.THRED_W = $scope.thredW;
-        params.DEFINITION1 = $scope.definition1;
-        params.REF1 = $scope.ref1;
-        params.THRED_A = $scope.thredA;
-        params.DEFINITION2 = $scope.definition2;
-        params.REF2 = $scope.ref2;
-        params.THRED_OTHER = $scope.thredO;
-        params.DEFINITION3 = $scope.definition3;
-        params.REF3 = $scope.ref3;
-		if ($scope.yuzhiId && $scope.yuzhiId != '') {
+        params.SYNONYMS = $scope.synonyms;
+        params.FORMULA = $scope.formula;
+        params.RI_N = $scope.rin;
+        params.RI_P = $scope.rip;
+        params.CATEGORY = $scope.category;
+        params.ORIGIN = $scope.origin;
+        params.FLAVOR_DESC = $scope.flavorDesc;
+        params.REF = $scope.ref;
+		if ($scope.fengweiId && $scope.fengweiId != '') {
 			params.process = 'UPDATE';
 		} else {
 			params.process = 'INSERT';
 		}
-		params.entityType = 'yuZhi';
+		params.entityType = 'fengWeiMiaoShu';
 		console.log(params);
         $http({
           url : 'process',
           method : 'POST',
           params : params
         }).then(function(response) {
-          console.log('Create/Update - success');
+          console.log('search - success');
 			if (response.data.success) {
-				$('#msg').html("操作成功");
-                alert("操作成功");
+				  $('#msg').html("操作成功");
 			} else {
-				var msg = response.data.msg;
-				$('#msg').html(msg);
-				alert(msg);
-				return;
+				$('#msg').html(response.data.msg);
 			}
         }, function(response) {
-          console.log('Create/Update - error');
+          console.log('search - error');
 		  $('#msg').html("操作失败，请过后再试或联系管理员");
-		  alert("操作失败，请过后再试或联系管理员");
 		  return;
         });
       };
@@ -199,6 +173,10 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
 			alert('Compound不能为空');
 			return false;
 		}
+		if ($scope.femaNo != '' && !isNum($scope.femaNo) ) {
+			alert('FEMA No应该是数字');
+			return false;
+		}
 		return true;
 	}
  
@@ -207,16 +185,16 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
 		if (ok) {
 			$scope.execDelete();
 		} else {
-			alert("请检查输入");
+			alert("请再检查一遍");
 		}
 	}
 
 	$scope.execDelete = function() {
 		console.log("execDelete...");
         var params = {};
-		params.YUZHI_ID = $scope.yuzhiId;
+		params.FENGWEI_ID = $scope.fengweiId;
 		params.process = 'DELETE';
-		params.entityType = 'yuZhi';
+		params.entityType = 'fengWeiMiaoShu';
 		console.log(params);
         $http({
           url : 'process',
@@ -224,11 +202,12 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
           params : params
         }).then(function(response) {
           	console.log('delete - success');
-			$scope.yuzhiId = $scope.yuzhiIdBackup;
+			$scope.fengweiId = $scope.fengweiIdBackup;
 			if (response.data.success) {
 				$('#msg').html("操作成功");
-                alert("操作成功");
+				alert("操作成功");
 				$('#deleteConfirm').modal('hide');
+				return;
 			} else {
 				var msg = response.data.msg;
 				$('#msg').html(msg);
@@ -237,23 +216,24 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
 				return;
 			}
         }, function(response) {
-          console.log('delete - error');
-		  $scope.yuzhiId = $scope.yuzhiIdBackup;
+          console.log('search - error');
+		  $scope.fengweiId = $scope.fengweiIdBackup;
 		  $('#msg').html("操作失败，请过后再试或联系管理员");
-		  alert("操作失败，请过后再试或联系管理员");
+		  alert(msg);
+		  $('#deleteConfirm').modal('hide');
 		  return;
         });
       };
 
-	$scope.validateOnDelete = function() {
-		if ($scope.yuzhiId == null || $scope.yuzhiId == '') {
+	  $scope.validateOnDelete = function() {
+		if ($scope.fengweiId == null || $scope.fengweiId == '') {
 			alert('没有选中要删除的项目');
 			return false;
 		}
 		return true;
-	}
-	
-	$scope.login = function(user, password) {
+	  };
+
+	  $scope.login = function(user, password) {
 		if ($scope.user == null || $scope.user == '') {
 			$scope.admin = false;
 			alert('user不能为空');
@@ -276,12 +256,25 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
 		}
 	};
 	
+	
 	$scope.values = function(id) {
-		$scope.yuzhiIdBackup = $scope.yuzhiId;
-		$scope.yuzhiId = id;
-		console.log($scope.yuzhiId);
+		$scope.fengweiIdBackup = $scope.fengweiId;
+		$scope.fengweiId = id;
+		console.log($scope.fengweiId);
 	};
 	
 	} ])
-
-
+	
+	function isNum(value) {
+		var result = false;
+		if (!value || value=="") {
+			return null;
+		}
+		result = true;
+		if (value.trim().match(/^[0-9]*$/)) {
+			result = true;
+		} else {
+			result = false;
+		}
+		return result;
+	}

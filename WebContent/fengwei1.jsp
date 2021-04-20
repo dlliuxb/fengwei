@@ -10,7 +10,7 @@
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="js/controller_fengWeiMiaoShu.js"></script>
+<script src="js/controller_fengWeiMiaoShu1.js"></script>
 </head>
 <body ng-app="myApp" ng-controller="fengWeiMiaoShuCtrl">
 <div class="container" style="height: 140px;background-color: rgb(224, 236, 255)">
@@ -74,9 +74,10 @@
 
 <div class="container">
 
-<div id="searchForm">
-
-<table id="fengweiresults" class="table table-striped table-bordered" style="width:100%" data-widget="datatable"
+<div class="col-md-12" style="border:1px solid #ddd;width:100%" id="searchResult">
+<br>
+<div class="col-md-12">
+<table id="fengweiresults" class="table table-striped table-bordered" style="width:100%; table-layout: fixed;" data-widget="datatable"
             data-searching="true" data-info="true" data-ordering="true" data-paging="true" data-scrollaxis="x">
   <thead>
     <tr>
@@ -96,7 +97,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="fengWeiMiaoShu in fengWeiMiaoShuModel|orderBy:col:desc">
+    <tr ng-repeat="fengWeiMiaoShu in fengWeiMiaoShuModel|orderBy:col:desc" >
       <td>
         <button class="btn" ng-click="editFengWeiMiaoShu(fengWeiMiaoShu.fengweiId)" ng-show="admin">
           <span class="glyphicon glyphicon-pencil"></span>编辑
@@ -105,21 +106,51 @@
           <span class="	glyphicon glyphicon-remove"></span>删除
         </button>
       </td>
-      <td>{{ fengWeiMiaoShu.fengweiId }}</td>
-      <td>{{ fengWeiMiaoShu.cas }}</td>
-      <td>{{ fengWeiMiaoShu.femaNo }}</td>
-      <td>{{ fengWeiMiaoShu.compound }}</td>
-      <td>{{ fengWeiMiaoShu.synonyms }}</td>
-      <td>{{ fengWeiMiaoShu.formula }}</td>
-      <td>{{ fengWeiMiaoShu.rin }}</td>
-      <td>{{ fengWeiMiaoShu.rip }}</td>
-      <td>{{ fengWeiMiaoShu.category }}</td>
-      <td>{{ fengWeiMiaoShu.origin }}</td>
-      <td>{{ fengWeiMiaoShu.flavorDesc }}</td>
-      <td>{{ fengWeiMiaoShu.ref }}</td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.fengweiId }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.cas }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.femaNo }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.compound }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.synonyms }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.formula }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.rin }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.rip }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.category }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.origin }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.flavorDesc }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.ref }}</div></td>
     </tr>
   </tbody>
 </table>
+</div>
+
+<div >
+	<table width="100%">
+		<tr>
+			<td width="30%" align="left">1-25 of 3006 items</td>
+			<td align="center">
+				<span>25</span>
+				<span>|</span>
+				<span>50</span>
+				<span>|</span>
+				<span>100</span>
+			</td>
+			<td width="30%" align="right">
+			  <nav aria-label="Page navigation">
+				<ul class="pagination">
+					<li><a href="#">&laquo;</a></li>
+					<li class="active"><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">&raquo;</a></li>
+				</ul>
+			  </nav>
+			</td>
+		</tr>
+	</table>
+</div>
+
 </div>
 
 <div id="adminForm" ng-show="admin">

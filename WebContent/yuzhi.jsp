@@ -64,7 +64,7 @@
 
 <div class="container">
 
-<div id="searchForm">
+<div id="searchResult">
 
 <table class="table table-striped table-bordered" class="table table-striped table-bordered" style="width:100%" data-widget="datatable"
             data-searching="true" data-info="true" data-ordering="true" data-paging="true" data-scrollaxis="x">
