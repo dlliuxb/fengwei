@@ -24,6 +24,16 @@ angular.module('myApp', []).controller('fengWeiMiaoShuCtrl', [
 	$scope.fengWeiMiaoShuModel = [
 
 	];
+	$scope.pageOption = {
+		'allData' : '',
+		'totalCount' : '',
+		'currentData' : '',
+		'pageSize' : '',
+		'currentPage' : '',
+		'currentPageStart' : '',
+		'currentPageEnd' : '',
+		'lastPage' : ''
+	};
 	$scope.desc = 0;
 	$scope.edit = false;
 	$scope.error = true;
@@ -92,19 +102,36 @@ angular.module('myApp', []).controller('fengWeiMiaoShuCtrl', [
         }).then(function(response) {
           console.log('search - success');
 			if (response.data.success) {
-                  var results = response.data.data;
-				  console.log(results);
-                  $scope.fengWeiMiaoShuModel = results;
-					for (var i=0; i<$scope.fengWeiMiaoShuModel.length; i++) {
-						if ($scope.fengWeiMiaoShuModel[i].femaNo == 0) {
-							$scope.fengWeiMiaoShuModel[i].femaNo = '';
-						}
+              var results = response.data.data;
+			  console.log(results);
+				for (var i=0; i<results.length; i++) {
+					if (results[i].femaNo == 0) {
+						results[i].femaNo = '';
 					}
-				  if (results && results.length == 0) {
-					$('#msg').html("返回0条结果");
-				  } else {
-					$('#msg').html("");
-				  }
+				}
+			  $scope.pageOption.totalCount = results.length;
+			  $scope.pageOption.allData = results;
+			  $scope.pageOption.currentPage = 1;
+			  $scope.pageOption.pageSize = 25;
+			  $scope.pageOption.currentPageStart = $scope.pageOption.pageSize * ($scope.pageOption.currentPage - 1) + 1;
+			  if ($scope.pageOption.pageSize * $scope.pageOption.currentPage < $scope.pageOption.totalCount) {
+				$scope.pageOption.currentPageEnd = $scope.pageOption.pageSize * $scope.pageOption.currentPage;
+			  } else {
+				  $scope.pageOption.currentPageEnd = $scope.pageOption.totalCount;
+			  }
+			  $scope.pageOption.currentData = {};
+			  var tempArray = [];
+			  for (var j = $scope.pageOption.currentPageStart-1; j<$scope.pageOption.currentPageEnd; j++) {
+				tempArray.push($scope.pageOption.allData[j]);
+			  }
+			  $scope.pageOption.currentData = tempArray;
+			  $scope.fengWeiMiaoShuModel = $scope.pageOption.currentData;
+			  
+			  if (results && results.length == 0) {
+				$('#msg').html("返回0条结果");
+			  } else {
+				$('#msg').html("");
+			  }
 			}
         }, function(response) {
           console.log('search - error');

@@ -54,9 +54,9 @@
 			   placeholder="CAS (化合物的CAS号)" length='35%' ng-model="search.cas">
 		</div>
 		<div class="form-group">
-			<label class="sr-only" for="compound">Compound (化合物名称)</label>
+			<label class="sr-only" for="compound">Compound (化合物名称及同义词)</label>
 			<input type="text" class="form-control" id="compound" 
-			   placeholder="Compound (化合物名称)" length='35%' ng-model="search.compound">
+			   placeholder="Compound (化合物及同义词)" length='35%' ng-model="search.compound">
 		</div>
 		<div class="form-group">
 			<label class="sr-only" for="formula">Formula (分子式)</label>
@@ -81,7 +81,7 @@
             data-searching="true" data-info="true" data-ordering="true" data-paging="true" data-scrollaxis="x">
   <thead>
     <tr>
-   	  <th ></th>
+   	  <th ng-show="admin"></th>
       <th ng-click="col='fengweiId';desc=!desc">No (序号)</th>
       <th ng-click="col='cas';desc=!desc">CAS (化合物的CAS号)</th>
       <th ng-click="col='femaNo';desc=!desc">FEMA NO (FEMA编号)</th>
@@ -98,7 +98,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="fengWeiMiaoShu in fengWeiMiaoShuModel|orderBy:col:desc" >
-      <td>
+      <td ng-show="admin">
         <button class="btn" ng-click="editFengWeiMiaoShu(fengWeiMiaoShu.fengweiId)" ng-show="admin">
           <span class="glyphicon glyphicon-pencil"></span>编辑
         </button>
@@ -123,10 +123,10 @@
 </table>
 </div>
 
-<div >
-	<table width="100%">
+<div ng-show="fengWeiMiaoShuModel.length>0">
+	<table width="100%" >
 		<tr>
-			<td width="30%" align="left">1-25 of 3006 items</td>
+			<td width="30%" align="left">{{ pageOption.currentPageStart }}-{{ pageOption.currentPageEnd }} of {{ pageOption.total }} items</td>
 			<td align="center">
 				<span>25</span>
 				<span>|</span>
@@ -137,13 +137,13 @@
 			<td width="30%" align="right">
 			  <nav aria-label="Page navigation">
 				<ul class="pagination">
-					<li><a href="#">&laquo;</a></li>
-					<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">&raquo;</a></li>
+					<li><a href="#" ng-onClick="pageOption.currentPage=1">&laquo;</a></li>
+					<li ng-show="pageOption.currentPage>2"><a href="#" ng-onClick="pageOption.currentPage-=2">{{ pageOption.currentPage -2}}</a></li>
+					<li ng-show="pageOption.currentPage>1"><a href="#" ng-onClick="pageOption.currentPage-=1">{{ pageOption.currentPage -1 }}</a></li>
+					<li class="active"><a href="#">{{ pageOption.currentPage }}</a></li>
+					<li ng-show="pageOption.currentPage+1<pageOption.total/pageOption.pageSize"><a href="#" ng-onClick="pageOption.currentPage+=1">{{ pageOption.currentPage +1 }}</a></li>
+					<li ng-show="pageOption.currentPage+2<pageOption.total/pageOption.pageSize"><a href="#" ng-onClick="pageOption.currentPage+=2">{{ pageOption.currentPage +2 }}</a></li>
+					<li><a href="#" ng-onClick="pageOption.currentPage=pageOption.total/pageOption.pageSize">&raquo;</a></li>
 				</ul>
 			  </nav>
 			</td>
