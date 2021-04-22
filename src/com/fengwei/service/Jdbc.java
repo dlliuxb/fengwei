@@ -76,9 +76,9 @@ public class Jdbc {
 					compoundRep = compound.replaceAll(regexp, "''");
 				}
 				if (!cas.isEmpty()) {
-					sql += " AND COMPOUND like '%" + compoundRep + "%'";
+					sql += " AND COMPOUND like '%" + compoundRep + "%' OR SYNONYMS like '%" + compoundRep + "%'";
 				} else {
-					sql += " COMPOUND like '%" + compoundRep + "%'";
+					sql += " COMPOUND like '%" + compoundRep + "%' OR SYNONYMS like '%" + compoundRep + "%'";
 				}
 			}
 			if (!formula.isEmpty() && !"".equals(formula)) {
