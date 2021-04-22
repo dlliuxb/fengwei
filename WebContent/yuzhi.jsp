@@ -54,9 +54,9 @@
 			   placeholder="CAS (化合物的CAS号)" length='35%' ng-model="search.cas">
 		</div>
 		<div class="form-group">
-			<label class="sr-only" for="compound">Compound (化合物名称)</label>
+			<label class="sr-only" for="compound">Compound (化合物名称及同义词)</label>
 			<input type="text" class="form-control" id="compound" 
-			   placeholder="Compound (化合物名称)" length='35%' ng-model="search.compound">
+			   placeholder="Compound (化合物及同义词)" length='35%' ng-model="search.compound">
 		</div>
 		<button type="search" class="btn btn-default" ng-click="execSearch()">搜索</button>
 	</form>
@@ -64,13 +64,13 @@
 
 <div class="container">
 
-<div id="searchForm">
+<div id="searchResult">
 
 <table class="table table-striped table-bordered" class="table table-striped table-bordered" style="width:100%" data-widget="datatable"
             data-searching="true" data-info="true" data-ordering="true" data-paging="true" data-scrollaxis="x">
   <thead>
     <tr>
-   	  <th ></th>
+   	  <th ng-show="admin"></th>
       <th ng-click="col='yuzhiId';desc=!desc">No (序号)</th>
       <th ng-click="col='cas';desc=!desc">CAS (化合物的CAS号)</th>
       <th ng-click="col='compound';desc=!desc">Compound (化合物名称)</th>
@@ -94,7 +94,7 @@
         <button class="btn" ng-show="admin" data-toggle="modal" data-target="#deleteConfirm" ng-click="values(yuZhi.yuzhiId)">
           <span class="	glyphicon glyphicon-remove"></span>删除
         </button>
-      </td>
+      </td ng-show="admin">
       <td>{{ yuZhi.yuzhiId }}</td>
       <td>{{ yuZhi.cas }}</td>
       <td>{{ yuZhi.compound }}</td>

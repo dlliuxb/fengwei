@@ -20,9 +20,20 @@ angular.module('myApp', []).controller('fengWeiMiaoShuCtrl', [
 	$scope.user='';
 	$scope.password='';
 	$scope.admin = false;
+	
 	$scope.fengWeiMiaoShuModel = [
 
 	];
+	$scope.pageOption = {
+		'allData' : '',
+		'totalCount' : '',
+		'currentData' : '',
+		'pageSize' : '',
+		'currentPage' : '',
+		'currentPageStart' : '',
+		'currentPageEnd' : '',
+		'lastPage' : ''
+	};
 	$scope.desc = 0;
 	$scope.edit = false;
 	$scope.error = true;
@@ -91,14 +102,36 @@ angular.module('myApp', []).controller('fengWeiMiaoShuCtrl', [
         }).then(function(response) {
           console.log('search - success');
 			if (response.data.success) {
-                  var results = response.data.data;
-				  console.log(results);
-                  $scope.fengWeiMiaoShuModel = results;
-				  if (results && results.length == 0) {
-					$('#msg').html("返回0条结果");
-				  } else {
-					$('#msg').html("");
-				  }
+              var results = response.data.data;
+			  console.log(results);
+				for (var i=0; i<results.length; i++) {
+					if (results[i].femaNo == 0) {
+						results[i].femaNo = '';
+					}
+				}
+			  $scope.pageOption.totalCount = results.length;
+			  $scope.pageOption.allData = results;
+			  $scope.pageOption.currentPage = 1;
+			  $scope.pageOption.pageSize = 25;
+			  $scope.pageOption.currentPageStart = $scope.pageOption.pageSize * ($scope.pageOption.currentPage - 1) + 1;
+			  if ($scope.pageOption.pageSize * $scope.pageOption.currentPage < $scope.pageOption.totalCount) {
+				$scope.pageOption.currentPageEnd = $scope.pageOption.pageSize * $scope.pageOption.currentPage;
+			  } else {
+				  $scope.pageOption.currentPageEnd = $scope.pageOption.totalCount;
+			  }
+			  $scope.pageOption.currentData = {};
+			  var tempArray = [];
+			  for (var j = $scope.pageOption.currentPageStart-1; j<$scope.pageOption.currentPageEnd; j++) {
+				tempArray.push($scope.pageOption.allData[j]);
+			  }
+			  $scope.pageOption.currentData = tempArray;
+			  $scope.fengWeiMiaoShuModel = $scope.pageOption.currentData;
+			  
+			  if (results && results.length == 0) {
+				$('#msg').html("返回0条结果");
+			  } else {
+				$('#msg').html("");
+			  }
 			}
         }, function(response) {
           console.log('search - error');
@@ -165,6 +198,10 @@ angular.module('myApp', []).controller('fengWeiMiaoShuCtrl', [
 		}
 		if ($scope.compound == null || $scope.compound == '') {
 			alert('Compound不能为空');
+			return false;
+		}
+		if ($scope.femaNo != '' && !isNum($scope.femaNo) ) {
+			alert('FEMA No应该是数字');
 			return false;
 		}
 		return true;
@@ -254,5 +291,17 @@ angular.module('myApp', []).controller('fengWeiMiaoShuCtrl', [
 	};
 	
 	} ])
-
-
+	
+	function isNum(value) {
+		var result = false;
+		if (!value || value=="") {
+			return null;
+		}
+		result = true;
+		if (value.trim().match(/^[0-9]*$/)) {
+			result = true;
+		} else {
+			result = false;
+		}
+		return result;
+	}

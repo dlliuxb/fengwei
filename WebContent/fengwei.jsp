@@ -54,9 +54,9 @@
 			   placeholder="CAS (化合物的CAS号)" length='35%' ng-model="search.cas">
 		</div>
 		<div class="form-group">
-			<label class="sr-only" for="compound">Compound (化合物名称)</label>
+			<label class="sr-only" for="compound">Compound (化合物名称及同义词)</label>
 			<input type="text" class="form-control" id="compound" 
-			   placeholder="Compound (化合物名称)" length='35%' ng-model="search.compound">
+			   placeholder="Compound (化合物及同义词)" length='55%' ng-model="search.compound">
 		</div>
 		<div class="form-group">
 			<label class="sr-only" for="formula">Formula (分子式)</label>
@@ -80,7 +80,7 @@
             data-searching="true" data-info="true" data-ordering="true" data-paging="true" data-scrollaxis="x">
   <thead>
     <tr>
-   	  <th ></th>
+   	  <th ng-show="admin"></th>
       <th ng-click="col='fengweiId';desc=!desc">No (序号)</th>
       <th ng-click="col='cas';desc=!desc">CAS (化合物的CAS号)</th>
       <th ng-click="col='femaNo';desc=!desc">FEMA NO (FEMA编号)</th>
@@ -97,7 +97,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="fengWeiMiaoShu in fengWeiMiaoShuModel|orderBy:col:desc">
-      <td>
+      <td ng-show="admin">
         <button class="btn" ng-click="editFengWeiMiaoShu(fengWeiMiaoShu.fengweiId)" ng-show="admin">
           <span class="glyphicon glyphicon-pencil"></span>编辑
         </button>
