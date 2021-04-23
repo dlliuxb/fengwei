@@ -4,15 +4,15 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>风味描述词 - 水产风味数据库</title>
+<title>阈值 - 水产风味数据库</title>
 <link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="js/controller_fengWeiMiaoShu1.js"></script>
+<script src="js/controller_yuZhi1.js"></script>
 </head>
-<body ng-app="myApp" ng-controller="fengWeiMiaoShuCtrl">
+<body ng-app="myApp" ng-controller="yuZhiCtrl">
 <div class="container" style="height: 140px;background-color: rgb(224, 236, 255)">
 	 <div class="row">
 	 	<div class="col-md-2" style="width:155px; height:135px;">
@@ -36,8 +36,8 @@
 
 <div class="container">
 	<ul class="nav nav-pills">
-	  <li class="active"><a href="#">风味描述词</a></li>
-	  <li><a href="yuzhi.jsp">阈值</a></li>
+	  <li ><a href="fengwei.jsp">风味描述词</a></li>
+	  <li class="active"><a href="#">阈值</a></li>
 	</ul>
 </div>
 <br>
@@ -58,16 +58,6 @@
 			<input type="text" class="form-control" id="compound" 
 			   placeholder="Compound (化合物及同义词)" length='35%' ng-model="search.compound">
 		</div>
-		<div class="form-group">
-			<label class="sr-only" for="formula">Formula (分子式)</label>
-			<input type="text" class="form-control" id="formula" 
-			   placeholder="Formula (分子式)" length='35%' ng-model="search.formula">
-		</div>
-		<div class="form-group">
-			<label class="sr-only" for="category">Category (来源类别)</label>
-			<input type="text" class="form-control" id="category" 
-			   placeholder="Category (来源类别)" length='35%' ng-model="search.category">
-		</div>
 		<button type="search" class="btn btn-default" ng-click="execSearch()">搜索</button>
 	</form>
 </div>
@@ -77,53 +67,53 @@
 <div class="col-md-12" style="border:1px solid #ddd;width:100%" id="searchResult">
 <br>
 <div class="col-md-12">
-<table id="fengweiresults" class="table table-striped table-bordered" style="width:100%; table-layout: fixed;" data-widget="datatable"
+<table class="table table-striped table-bordered" class="table table-striped table-bordered" style="width:100%" data-widget="datatable"
             data-searching="true" data-info="true" data-ordering="true" data-paging="true" data-scrollaxis="x">
   <thead>
     <tr>
    	  <th ng-show="admin"></th>
-      <th ng-click="col='fengweiId';desc=!desc">No (序号)</th>
+      <th ng-click="col='yuzhiId';desc=!desc">No (序号)</th>
       <th ng-click="col='cas';desc=!desc">CAS (化合物的CAS号)</th>
-      <th ng-click="col='femaNo';desc=!desc">FEMA NO (FEMA编号)</th>
       <th ng-click="col='compound';desc=!desc">Compound (化合物名称)</th>
-      <th ng-click="col='synonyms';desc=!desc">Synonyms (同义词/代名词)</th>
-      <th ng-click="col='formula';desc=!desc">Formula (分子式)</th>
-      <th ng-click="col='rin';desc=!desc">RI-n (非极性保留指数)</th>
-      <th ng-click="col='rip';desc=!desc">RI-p (极性保留指数)</th>
-      <th ng-click="col='category';desc=!desc">Category (来源类别)</th>
-      <th ng-click="col='origin';desc=!desc">Origin (来源-原料)</th>
-      <th ng-click="col='flavorDesc';desc=!desc">Flavor description (风味描述)</th>
-      <th>Ref (参考文献)</th>
+      <th ng-click="col='thredW';desc=!desc">Thred-w(mg/kg) (化合物在水里的阈值)</th>
+      <th ng-click="col='definition1';desc=!desc">Definition(d/r) (检测/识别)</th>
+      <th ng-click="col='ref1';desc=!desc">Ref (参考文献)</th>
+      <th ng-click="col='thredA';desc=!desc">Thred-a(mg/m3) (化合物在空气里的阈值)</th>
+      <th ng-click="col='definition2';desc=!desc">Definition(d/r) (检测/识别)</th>
+      <th ng-click="col='ref2';desc=!desc">Ref (参考文献)</th>
+      <th ng-click="col='thredO';desc=!desc">Thred-other(mg/kg) (化合物在其他介质里的阈值)</th>
+      <th ng-click="col='definition3';desc=!desc">Definition(d/r) (检测/识别)</th>
+      <th ng-click="col='ref3';desc=!desc">Ref (参考文献)</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="fengWeiMiaoShu in fengWeiMiaoShuModel|orderBy:col:desc" >
+    <tr ng-repeat="yuZhi in yuZhiModel">
       <td ng-show="admin">
-        <button class="btn" ng-click="editFengWeiMiaoShu(fengWeiMiaoShu.fengweiId)" ng-show="admin">
+        <button class="btn" ng-click="editYuZhi(yuZhi.yuzhiId)" >
           <span class="glyphicon glyphicon-pencil"></span>编辑
         </button>
-        <button class="btn" ng-show="admin" data-toggle="modal" data-target="#deleteConfirm" ng-click="values(fengWeiMiaoShu.fengweiId)">
+        <button class="btn" data-toggle="modal" data-target="#deleteConfirm" ng-click="values(yuZhi.yuzhiId)">
           <span class="	glyphicon glyphicon-remove"></span>删除
         </button>
-      </td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.fengweiId }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.cas }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.femaNo }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.compound }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.synonyms }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.formula }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.rin }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.rip }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.category }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.origin }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.flavorDesc }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.ref }}</div></td>
+      </td >
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.yuzhiId }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.cas }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.compound }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.thredW }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.definition1 }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.ref1 }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.thredA }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.definition2 }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.ref2 }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.thredO }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.definition3 }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.ref3 }}</div></td>
     </tr>
   </tbody>
 </table>
 </div>
 
-<div ng-show="fengWeiMiaoShuModel.length>0">
+<div ng-show="yuZhiModel.length>0">
 	<table width="100%" >
 		<tr>
 			<td width="30%" align="left">{{ pageOption.currentPageStart }}-{{ pageOption.currentPageEnd }} of {{ pageOption.total }} items</td>
@@ -155,88 +145,85 @@
 
 <div id="adminForm" ng-show="admin">
 <hr>
-<button class="btn " ng-click="editFengWeiMiaoShu('new')" style="color: #fff;background-color: #337ab7">
-<span class="glyphicon glyphicon-user"></span>创建新风味描述词
+<button class="btn " ng-click="editYuZhi('new')" style="color: #fff;background-color: #337ab7">
+<span class="glyphicon glyphicon-user"></span>创建阈值
 </button>
 <hr>
 
-<h3 ng-show="!edit ">创建新风味描述词:</h3>
-<h3 ng-show="edit ">编辑风味描述词:</h3>
+<h3 ng-show="!edit ">创建阈值:</h3>
+<h3 ng-show="edit ">编辑阈值:</h3>
 
-<form class="form-horizontal" >
+<form class="form-horizontal">
   <div class="form-group">
     <label class="col-sm-2 control-label">No (序号):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="fengweiId" ng-disabled="true" placeholder="No (序号)">
+    <input type="text" ng-model="yuzhiId" ng-disabled="true" placeholder="No (序号)">
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">CAS (化合物的CAS号):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="cas" name="cas" placeholder="CAS (化合物的CAS号)" required>
-    <span style="color:red" ng-show="$scope.cas.$dirty && $scope.cas.$invalid">
-	<span ng-show="$scope.user.$error.required">CAS是必须的。</span>
-	</span>
+    <input type="text" ng-model="cas" ng-disabled="false" placeholder="CAS (化合物的CAS号)">
     </div>
   </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">FEMA No (FEMA编号):</label>
-    <div class="col-sm-10">
-    <input type="text" ng-model="femaNo" ng-disabled="false" placeholder="FEMA No (FEMA编号)">
-    </div>
-  </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">Compound (化合物名称):</label>
     <div class="col-sm-10">
     <input type="text" ng-model="compound" ng-disabled="false" placeholder="Compound (化合物名称)">
     </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Synonyms (同义词/代名词):</label>
-    <div class="col-sm-10">
-    <input type="text" ng-model="synonyms" ng-disabled="false" placeholder="Synonyms (同义词/代名词)">
-    </div>
   </div> 
   <div class="form-group">
-    <label class="col-sm-2 control-label">Formula (分子式):</label>
+    <label class="col-sm-2 control-label">Thred-w(mg/kg) (化合物在水里的阈值):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="formula" ng-disabled="false" placeholder="Formula (分子式)">
+    <input type="text" ng-model="thredW" ng-disabled="false" placeholder="Thred-w(mg/kg) (化合物在水里的阈值)">
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 control-label">RI-n (非极性保留指数):</label>
+    <label class="col-sm-2 control-label">Definition(d/r) (检测/识别):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="rin" ng-disabled="false" placeholder="RI-n (非极性保留指数)">
-    </div>
-  </div> 
-  <div class="form-group">
-    <label class="col-sm-2 control-label">RI-p (极性保留指数):</label>
-    <div class="col-sm-10">
-    <input type="text" ng-model="rip" ng-disabled="false" placeholder="RI-p (极性保留指数)">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Category (来源类别):</label>
-    <div class="col-sm-10">
-    <input type="text" ng-model="category" ng-disabled="false" placeholder="Category (来源类别)">
-    </div>
-  </div> 
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Origin (来源-原料):</label>
-    <div class="col-sm-10">
-    <input type="text" ng-model="origin" ng-disabled="false" placeholder="Origin (来源-原料)">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Flavor description (风味描述):</label>
-    <div class="col-sm-10">
-    <input type="text" ng-model="flavorDesc" ng-disabled="false" placeholder="Flavor description (风味描述)">
+    <input type="text" ng-model="definition1" ng-disabled="false" placeholder="Definition(d/r) (检测/识别)">
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">Ref (参考文献):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="ref" ng-disabled="false" placeholder="Ref (参考文献)">
+    <input type="text" ng-model="ref1" ng-disabled="false" placeholder="Ref (参考文献)">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Thred-a(mg/m3) (化合物在空气里的阈值):</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="thredA" ng-disabled="false" placeholder="Thred-a(mg/m3) (化合物在空气里的阈值)">
+    </div>
+  </div> 
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Definition(d/r) (检测/识别):</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="definition2" ng-disabled="false" placeholder="Definition(d/r) (检测/识别)">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Ref (参考文献):</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="ref2" ng-disabled="false" placeholder="Ref (参考文献)">
+    </div>
+  </div> 
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Thred-other(mg/kg) (化合物在其他介质里的阈值):</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="thredO" ng-disabled="false" placeholder="Thred-other(mg/kg) (化合物在其他介质里的阈值)">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Definition(d/r) (检测/识别):</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="definition3" ng-disabled="false" placeholder="Definition(d/r) (检测/识别)">
+    </div>
+  </div> 
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Ref (参考文献):</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="ref3" ng-disabled="false" placeholder="Ref (参考文献)">
     </div>
   </div>
 </form>
