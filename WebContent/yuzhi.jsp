@@ -87,14 +87,14 @@
   </thead>
   <tbody>
     <tr ng-repeat="yuZhi in yuZhiModel">
-      <td>
-        <button class="btn" ng-click="editYuZhi(yuZhi.yuzhiId)" ng-show="admin">
+      <td ng-show="admin">
+        <button class="btn" ng-click="editYuZhi(yuZhi.yuzhiId)" >
           <span class="glyphicon glyphicon-pencil"></span>编辑
         </button>
-        <button class="btn" ng-show="admin" data-toggle="modal" data-target="#deleteConfirm" ng-click="values(yuZhi.yuzhiId)">
+        <button class="btn" data-toggle="modal" data-target="#deleteConfirm" ng-click="values(yuZhi.yuzhiId)">
           <span class="	glyphicon glyphicon-remove"></span>删除
         </button>
-      </td ng-show="admin">
+      </td >
       <td>{{ yuZhi.yuzhiId }}</td>
       <td>{{ yuZhi.cas }}</td>
       <td>{{ yuZhi.compound }}</td>
