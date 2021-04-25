@@ -64,8 +64,9 @@
 
 <div class="container">
 
-<div id="searchResult">
-
+<div class="col-md-12" style="border:1px solid #ddd;width:100%" id="searchResult">
+<br>
+<div class="col-md-12">
 <table class="table table-striped table-bordered" class="table table-striped table-bordered" style="width:100%" data-widget="datatable"
             data-searching="true" data-info="true" data-ordering="true" data-paging="true" data-scrollaxis="x">
   <thead>
@@ -95,21 +96,52 @@
           <span class="	glyphicon glyphicon-remove"></span>删除
         </button>
       </td >
-      <td>{{ yuZhi.yuzhiId }}</td>
-      <td>{{ yuZhi.cas }}</td>
-      <td>{{ yuZhi.compound }}</td>
-      <td>{{ yuZhi.thredW }}</td>
-      <td>{{ yuZhi.definition1 }}</td>
-      <td>{{ yuZhi.ref1 }}</td>
-      <td>{{ yuZhi.thredA }}</td>
-      <td>{{ yuZhi.definition2 }}</td>
-      <td>{{ yuZhi.ref2 }}</td>
-      <td>{{ yuZhi.thredO }}</td>
-      <td>{{ yuZhi.definition3 }}</td>
-      <td>{{ yuZhi.ref3 }}</td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.yuzhiId }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.cas }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.compound }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.thredW }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.definition1 }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.ref1 }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.thredA }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.definition2 }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.ref2 }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.thredO }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.definition3 }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.ref3 }}</div></td>
     </tr>
   </tbody>
 </table>
+</div>
+
+<div ng-show="yuZhiModel.length>0">
+	<table width="100%" >
+		<tr>
+			<td width="30%" align="left">{{ pageOption.currentPageStart }}-{{ pageOption.currentPageEnd }} of {{ pageOption.totalCount }} items</td>
+			<td align="center">
+				<span><a id="pageSize25" ng-href="{{pageOption.pageSize==25 ? '':'#'}}" ng-disabled="pageOption.pageSize==25" ng-Click="setPageSize(25)">25</a></span>
+				<span>|</span>
+				<span><a id="pageSize50" ng-href="{{pageOption.pageSize==50 ? '':'#'}}" ng-disabled="pageOption.pageSize==50" ng-Click="setPageSize(50)">50</a></span>
+				<span>|</span>
+				<span><a id="pageSize100" ng-href="{{pageOption.pageSize==100 ? '':'#'}}" ng-disabled="pageOption.pageSize==100" ng-Click="setPageSize(100)">100</a></span>
+				<span>items per page</span>
+			</td>
+			<td width="30%" align="right">
+			  <nav aria-label="Page navigation">
+				<ul class="pagination">
+					<li><a href="#" ng-Click="goPage(1)">&laquo;</a></li>
+					<li ng-show="pageOption.currentPage>2"><a href="#" ng-Click="goPage(pageOption.currentPage-2)">{{ pageOption.currentPage -2}}</a></li>
+					<li ng-show="pageOption.currentPage>1"><a href="#" ng-Click="goPage(pageOption.currentPage-1)">{{ pageOption.currentPage -1 }}</a></li>
+					<li class="active"><a href="#">{{ pageOption.currentPage }}</a></li>
+					<li ng-show="pageOption.currentPage+1<=pageOption.lastPage"><a href="#" ng-Click="goPage(pageOption.currentPage+1)">{{ pageOption.currentPage +1 }}</a></li>
+					<li ng-show="pageOption.currentPage+2<=pageOption.lastPage"><a href="#" ng-Click="goPage(pageOption.currentPage+2)">{{ pageOption.currentPage +2 }}</a></li>
+					<li><a href="#" ng-Click="goLastPage()">&raquo;</a></li>
+				</ul>
+			  </nav>
+			</td>
+		</tr>
+	</table>
+</div>
+
 </div>
 
 <div id="adminForm" ng-show="admin">
