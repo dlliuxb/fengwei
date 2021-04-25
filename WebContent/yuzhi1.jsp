@@ -116,24 +116,25 @@
 <div ng-show="yuZhiModel.length>0">
 	<table width="100%" >
 		<tr>
-			<td width="30%" align="left">{{ pageOption.currentPageStart }}-{{ pageOption.currentPageEnd }} of {{ pageOption.total }} items</td>
+			<td width="30%" align="left">{{ pageOption.currentPageStart }}-{{ pageOption.currentPageEnd }} of {{ pageOption.totalCount }} items</td>
 			<td align="center">
-				<span>25</span>
+				<span><a id="pageSize25" ng-href="{{pageOption.pageSize==25 ? '':'#'}}" ng-disabled="pageOption.pageSize==25" ng-Click="setPageSize(25)">25</a></span>
 				<span>|</span>
-				<span>50</span>
+				<span><a id="pageSize50" ng-href="{{pageOption.pageSize==50 ? '':'#'}}" ng-disabled="pageOption.pageSize==50" ng-Click="setPageSize(50)">50</a></span>
 				<span>|</span>
-				<span>100</span>
+				<span><a id="pageSize100" ng-href="{{pageOption.pageSize==100 ? '':'#'}}" ng-disabled="pageOption.pageSize==100" ng-Click="setPageSize(100)">100</a></span>
+				<span>items per page</span>
 			</td>
 			<td width="30%" align="right">
 			  <nav aria-label="Page navigation">
 				<ul class="pagination">
-					<li><a href="#" ng-onClick="pageOption.currentPage=1">&laquo;</a></li>
-					<li ng-show="pageOption.currentPage>2"><a href="#" ng-onClick="pageOption.currentPage-=2">{{ pageOption.currentPage -2}}</a></li>
-					<li ng-show="pageOption.currentPage>1"><a href="#" ng-onClick="pageOption.currentPage-=1">{{ pageOption.currentPage -1 }}</a></li>
+					<li><a href="#" ng-Click="goPage(1)">&laquo;</a></li>
+					<li ng-show="pageOption.currentPage>2"><a href="#" ng-Click="goPage(pageOption.currentPage-2)">{{ pageOption.currentPage -2}}</a></li>
+					<li ng-show="pageOption.currentPage>1"><a href="#" ng-Click="goPage(pageOption.currentPage-1)">{{ pageOption.currentPage -1 }}</a></li>
 					<li class="active"><a href="#">{{ pageOption.currentPage }}</a></li>
-					<li ng-show="pageOption.currentPage+1<pageOption.totalCount/pageOption.pageSize"><a href="#" ng-onClick="pageOption.currentPage+=1">{{ pageOption.currentPage +1 }}</a></li>
-					<li ng-show="pageOption.currentPage+2<pageOption.totalCount/pageOption.pageSize"><a href="#" ng-onClick="pageOption.currentPage+=2">{{ pageOption.currentPage +2 }}</a></li>
-					<li><a href="#" ng-onClick="pageOption.currentPage=pageOption.totalCount/pageOption.pageSize">&raquo;</a></li>
+					<li ng-show="pageOption.currentPage+1<=pageOption.lastPage"><a href="#" ng-Click="goPage(pageOption.currentPage+1)">{{ pageOption.currentPage +1 }}</a></li>
+					<li ng-show="pageOption.currentPage+2<=pageOption.lastPage"><a href="#" ng-Click="goPage(pageOption.currentPage+2)">{{ pageOption.currentPage +2 }}</a></li>
+					<li><a href="#" ng-Click="goLastPage()">&raquo;</a></li>
 				</ul>
 			  </nav>
 			</td>

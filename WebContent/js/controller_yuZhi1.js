@@ -104,7 +104,17 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
 				  $scope.pageOption.totalCount = results.length;
 				  $scope.pageOption.allData = results;
 				  $scope.pageOption.currentPage = 1;
-				  $scope.pageOption.pageSize = 25;
+				  if ($scope.pageOption.pageSize == '') {
+				  	$scope.pageOption.pageSize = 25;
+				  	var pageSize25 = document.getElementById('pageSize25');
+				  	pageSize25.style.color='#333';
+				  	var pageSize50 = document.getElementById('pageSize50');
+				  	pageSize50.style.color='#337ab7';
+				  	var pageSize100 = document.getElementById('pageSize100');
+				  	pageSize100.style.color='#337ab7';
+			  	  }
+			  	  var lastPage = parseInt($scope.pageOption.totalCount/$scope.pageOption.pageSize)+1;
+			  	  $scope.pageOption.lastPage = lastPage;
 				  $scope.pageOption.currentPageStart = $scope.pageOption.pageSize * ($scope.pageOption.currentPage - 1) + 1;
 				  if ($scope.pageOption.pageSize * $scope.pageOption.currentPage < $scope.pageOption.totalCount) {
 					$scope.pageOption.currentPageEnd = $scope.pageOption.pageSize * $scope.pageOption.currentPage;
@@ -171,7 +181,7 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
 		} else {
 			alert("请检查输入");
 		}
-	}
+	};
 
 	$scope.execCreateUpdate = function() {
 		console.log("execCreateUpdate...");
@@ -228,7 +238,7 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
 			return false;
 		}
 		return true;
-	}
+	};
  
 	$scope.preExecDelete = function() {
 		var ok = $scope.validateOnDelete();
@@ -237,7 +247,7 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
 		} else {
 			alert("请检查输入");
 		}
-	}
+	};
 
 	$scope.execDelete = function() {
 		console.log("execDelete...");
@@ -279,7 +289,7 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
 			return false;
 		}
 		return true;
-	}
+	};
 	
 	$scope.login = function(user, password) {
 		if ($scope.user == null || $scope.user == '') {
@@ -308,6 +318,115 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
 		$scope.yuzhiIdBackup = $scope.yuzhiId;
 		$scope.yuzhiId = id;
 		console.log($scope.yuzhiId);
+	};
+	
+	$scope.setPageSize = function(value) {
+		$scope.pageOption.pageSize = value;
+		$scope.refreshPage($scope.pageOption.pageSize,$scope.pageOption.currentPage);
+	};
+	
+	$scope.refreshPage = function(input1, input2) {
+		$scope.pageOption.pageSize = input1;
+		input2 = 1;
+		$scope.pageOption.currentPage = input2;
+		var pageSize = $scope.pageOption.pageSize;
+		var currentPage = $scope.pageOption.currentPage;
+		var allData = $scope.pageOption.allData;
+		var currentPageStart = pageSize * (currentPage - 1) + 1;
+		var currentPageEnd = 1;
+	    $scope.pageOption.currentPageStart = currentPageStart;
+	  	if (pageSize * currentPage < $scope.pageOption.totalCount) {
+			currentPageEnd = pageSize * currentPage;
+	  	} else {
+		  	currentPageEnd = $scope.pageOption.totalCount;
+	  	}
+		$scope.pageOption.currentPageEnd = currentPageEnd;
+		
+	  	$scope.pageOption.currentData = {};
+	  	var tempArray = [];
+		if (allData.length > 0) {
+			for (var i = currentPageStart-1; i<currentPageEnd; i++) {
+				tempArray.push(allData[i]);
+	  		}
+	  		$scope.pageOption.currentData = tempArray;
+	  		$scope.yuZhiModel = $scope.pageOption.currentData;
+		}
+		
+		if ($scope.pageOption.pageSize == 25) {
+			var pageSize25 = document.getElementById('pageSize25');
+			pageSize25.style.color='#333';
+			var pageSize50 = document.getElementById('pageSize50');
+			pageSize50.style.color='#337ab7';
+			var pageSize100 = document.getElementById('pageSize100');
+			pageSize100.style.color='#337ab7';
+		} else if ($scope.pageOption.pageSize == 50) {
+			var pageSize25 = document.getElementById('pageSize25');
+			pageSize25.style.color='#337ab7';
+			var pageSize50 = document.getElementById('pageSize50');
+			pageSize50.style.color='#333';
+			var pageSize100 = document.getElementById('pageSize100');
+			pageSize100.style.color='#337ab7';
+		} else if ($scope.pageOption.pageSize == 100) {
+			var pageSize25 = document.getElementById('pageSize25');
+			pageSize25.style.color='#337ab7';
+			var pageSize50 = document.getElementById('pageSize50');
+			pageSize50.style.color='#337ab7';
+			var pageSize100 = document.getElementById('pageSize100');
+			pageSize100.style.color='#333';
+		}
+	};
+	
+	$scope.goPage = function(input) {
+		$scope.pageOption.currentPage = input;
+		var pageSize = $scope.pageOption.pageSize;
+		var currentPage = $scope.pageOption.currentPage;
+		var allData = $scope.pageOption.allData;
+		var currentPageStart = pageSize * (currentPage - 1) + 1;
+		var currentPageEnd = 1;
+	    $scope.pageOption.currentPageStart = currentPageStart;
+	  	if (pageSize * currentPage < $scope.pageOption.totalCount) {
+			currentPageEnd = pageSize * currentPage;
+	  	} else {
+		  	currentPageEnd = $scope.pageOption.totalCount;
+	  	}
+		$scope.pageOption.currentPageEnd = currentPageEnd;
+		
+	  	$scope.pageOption.currentData = {};
+	  	var tempArray = [];
+		if (allData.length > 0) {
+			for (var i = currentPageStart-1; i<currentPageEnd; i++) {
+				tempArray.push(allData[i]);
+	  		}
+	  		$scope.pageOption.currentData = tempArray;
+	  		$scope.yuZhiModel = $scope.pageOption.currentData;
+		}
+	};
+	
+	$scope.goLastPage = function() {
+		var pageSize = $scope.pageOption.pageSize;
+		var currentPage = parseInt($scope.pageOption.totalCount/pageSize)+1;
+		var allData = $scope.pageOption.allData;
+		var currentPageStart = pageSize * (currentPage - 1) + 1;
+		var currentPageEnd = 1;
+		$scope.pageOption.currentPage = currentPage;
+		$scope.pageOption.lastPage = currentPage;
+	    $scope.pageOption.currentPageStart = currentPageStart;
+	  	if (pageSize * currentPage < $scope.pageOption.totalCount) {
+			currentPageEnd = pageSize * currentPage;
+	  	} else {
+		  	currentPageEnd = $scope.pageOption.totalCount;
+	  	}
+		$scope.pageOption.currentPageEnd = currentPageEnd;
+		
+	  	$scope.pageOption.currentData = {};
+	  	var tempArray = [];
+		if (allData.length > 0) {
+			for (var i = currentPageStart-1; i<currentPageEnd; i++) {
+				tempArray.push(allData[i]);
+	  		}
+	  		$scope.pageOption.currentData = tempArray;
+	  		$scope.yuZhiModel = $scope.pageOption.currentData;
+		}
 	};
 	
 	} ])
