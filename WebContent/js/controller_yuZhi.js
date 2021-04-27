@@ -50,18 +50,24 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
 			$scope.ref3 = '';
     	} else {
     		$scope.edit = true;
-    		$scope.yuzhiId = $scope.yuZhiModel[id-1].yuzhiId;
-			$scope.cas = $scope.yuZhiModel[id-1].cas;
-			$scope.compound = $scope.yuZhiModel[id-1].compound;
-			$scope.thredW = $scope.yuZhiModel[id-1].thredW;
-			$scope.definition1 = $scope.yuZhiModel[id-1].definition1;
-			$scope.ref1 = $scope.yuZhiModel[id-1].ref1;
-			$scope.thredA = $scope.yuZhiModel[id-1].thredA;
-			$scope.definition2 = $scope.yuZhiModel[id-1].definition2;
-			$scope.ref2 = $scope.yuZhiModel[id-1].ref2;
-			$scope.thredO = $scope.yuZhiModel[id-1].thredO;
-			$scope.definition3 = $scope.yuZhiModel[id-1].definition3;
-			$scope.ref3 = $scope.yuZhiModel[id-1].ref3;
+			var index = '';
+			for (var i = 0; i< $scope.yuZhiModel.length; i++) {
+				if (id == $scope.yuZhiModel[i].yuzhiId) {
+					index = i;
+				}
+			}
+    		$scope.yuzhiId = $scope.yuZhiModel[index].yuzhiId;
+			$scope.cas = $scope.yuZhiModel[index].cas;
+			$scope.compound = $scope.yuZhiModel[index].compound;
+			$scope.thredW = $scope.yuZhiModel[index].thredW;
+			$scope.definition1 = $scope.yuZhiModel[index].definition1;
+			$scope.ref1 = $scope.yuZhiModel[index].ref1;
+			$scope.thredA = $scope.yuZhiModel[index].thredA;
+			$scope.definition2 = $scope.yuZhiModel[index].definition2;
+			$scope.ref2 = $scope.yuZhiModel[index].ref2;
+			$scope.thredO = $scope.yuZhiModel[index].thredO;
+			$scope.definition3 = $scope.yuZhiModel[index].definition3;
+			$scope.ref3 = $scope.yuZhiModel[index].ref3;
   		}
 	};
 
