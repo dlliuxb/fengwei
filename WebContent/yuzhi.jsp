@@ -67,7 +67,7 @@
 <div class="col-md-12" style="border:1px solid #ddd;width:100%" id="searchResult">
 <br>
 <div class="col-md-12">
-<table class="table table-striped table-bordered" class="table table-striped table-bordered" style="width:100%" data-widget="datatable"
+<table id="yuzhiresults" class="table table-striped table-bordered" style="width:100%; table-layout: fixed;" data-widget="datatable"
             data-searching="true" data-info="true" data-ordering="true" data-paging="true" data-scrollaxis="x">
   <thead>
     <tr>
