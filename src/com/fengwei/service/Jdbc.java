@@ -9,7 +9,6 @@ import java.util.List;
 
 import com.fengwei.entity.FengWeiMiaoShu;
 import com.fengwei.entity.YuZhi;
-import com.mysql.cj.util.StringUtils;
 
 import net.sf.json.JSONObject;
 
@@ -190,8 +189,10 @@ public class Jdbc {
 
 			String fengweiId = params.get("FENGWEI_ID") != null ? params.get("FENGWEI_ID").toString() : "";
 			String cas = params.get("CAS") != null ? params.get("CAS").toString() : "";
-			String femaNoStr = params.get("FEMA_NO") != null ? params.get("FEMA_NO").toString() : "";
-			int femaNo = !StringUtils.isNullOrEmpty(femaNoStr) ? Integer.valueOf(femaNoStr) : 0;
+			String femaNo = params.get("FEMA_NO") != null ? params.get("FEMA_NO").toString() : "";
+			if ("".equals(femaNo)) {
+				femaNo = "null";
+			}
 			String compound = params.get("COMPOUND") != null ? params.get("COMPOUND").toString() : "";
 			String synonyms = params.get("SYNONYMS") != null ? params.get("SYNONYMS").toString() : "";
 			String formula = params.get("FORMULA") != null ? params.get("FORMULA").toString() : "";
@@ -308,6 +309,9 @@ public class Jdbc {
 			String fengweiId = params.get("FENGWEI_ID") != null ? params.get("FENGWEI_ID").toString() : "";
 			String cas = params.get("CAS") != null ? params.get("CAS").toString() : "";
 			String femaNo = params.get("FEMA_NO") != null ? params.get("FEMA_NO").toString() : "";
+			if ("".equals(femaNo)) {
+				femaNo = "null";
+			}
 			String compound = params.get("COMPOUND") != null ? params.get("COMPOUND").toString() : "";
 			String synonyms = params.get("SYNONYMS") != null ? params.get("SYNONYMS").toString() : "";
 			String formula = params.get("FORMULA") != null ? params.get("FORMULA").toString() : "";
@@ -318,11 +322,10 @@ public class Jdbc {
 			String flavorDesc = params.get("FLAVOR_DESC") != null ? params.get("FLAVOR_DESC").toString() : "";
 			String ref = params.get("REF") != null ? params.get("REF").toString() : "";
 
-			String sql = "update fengwei.fengwei_miaoshu set CAS=\"" + cas + "\", FEMA_NO=\"" + femaNo
-					+ "\", COMPOUND=\"" + compound + "\", SYNONYMS=\"" + synonyms + "\", FORMULA=\"" + formula
-					+ "\", RI_N=\"" + rin + "\", RI_P=\"" + rip + "\", CATEGORY=\"" + category + "\", ORIGIN=\""
-					+ origin + "\", FLAVOR_DESC=\"" + flavorDesc + "\", REF=\"" + ref + "\" where FENGWEI_ID="
-					+ fengweiId;
+			String sql = "update fengwei.fengwei_miaoshu set CAS=\"" + cas + "\", FEMA_NO=" + femaNo + " , COMPOUND=\""
+					+ compound + "\", SYNONYMS=\"" + synonyms + "\", FORMULA=\"" + formula + "\", RI_N=\"" + rin
+					+ "\", RI_P=\"" + rip + "\", CATEGORY=\"" + category + "\", ORIGIN=\"" + origin
+					+ "\", FLAVOR_DESC=\"" + flavorDesc + "\", REF=\"" + ref + "\" where FENGWEI_ID=" + fengweiId;
 
 			// sql = sql.replace("\"", "");
 

@@ -54,18 +54,24 @@ angular.module('myApp', []).controller('fengWeiMiaoShuCtrl', [
 			$scope.ref = '';
     	} else {
     		$scope.edit = true;
-    		$scope.fengweiId = $scope.fengWeiMiaoShuModel[id-1].fengweiId;
-			$scope.cas = $scope.fengWeiMiaoShuModel[id-1].cas;
-			$scope.femaNo = $scope.fengWeiMiaoShuModel[id-1].femaNo;
-			$scope.compound = $scope.fengWeiMiaoShuModel[id-1].compound;
-			$scope.synonyms = $scope.fengWeiMiaoShuModel[id-1].synonyms;
-			$scope.formula = $scope.fengWeiMiaoShuModel[id-1].formula;
-			$scope.rin = $scope.fengWeiMiaoShuModel[id-1].rin;
-			$scope.rip = $scope.fengWeiMiaoShuModel[id-1].rip;
-			$scope.category = $scope.fengWeiMiaoShuModel[id-1].category;
-			$scope.origin = $scope.fengWeiMiaoShuModel[id-1].origin;
-			$scope.flavorDesc = $scope.fengWeiMiaoShuModel[id-1].flavorDesc;
-			$scope.ref = $scope.fengWeiMiaoShuModel[id-1].ref;
+			var index = '';
+			for (var i = 0; i< $scope.fengWeiMiaoShuModel.length; i++) {
+				if (id == $scope.fengWeiMiaoShuModel[i].fengweiId) {
+					index = i;
+				}
+			}
+    		$scope.fengweiId = $scope.fengWeiMiaoShuModel[index].fengweiId;
+			$scope.cas = $scope.fengWeiMiaoShuModel[index].cas;
+			$scope.femaNo = $scope.fengWeiMiaoShuModel[index].femaNo;
+			$scope.compound = $scope.fengWeiMiaoShuModel[index].compound;
+			$scope.synonyms = $scope.fengWeiMiaoShuModel[index].synonyms;
+			$scope.formula = $scope.fengWeiMiaoShuModel[index].formula;
+			$scope.rin = $scope.fengWeiMiaoShuModel[index].rin;
+			$scope.rip = $scope.fengWeiMiaoShuModel[index].rip;
+			$scope.category = $scope.fengWeiMiaoShuModel[index].category;
+			$scope.origin = $scope.fengWeiMiaoShuModel[index].origin;
+			$scope.flavorDesc = $scope.fengWeiMiaoShuModel[index].flavorDesc;
+			$scope.ref = $scope.fengWeiMiaoShuModel[index].ref;
   		}
 	};
 
