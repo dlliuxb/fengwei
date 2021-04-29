@@ -243,6 +243,50 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
 			alert('Compound不能为空');
 			return false;
 		}
+		if ($scope.cas != '' && invalidChar($scope.cas)) {
+			alert('CAS不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.compound != '' && invalidChar($scope.compound)) {
+			alert('Compound不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.thredW != '' && invalidChar($scope.thredW)) {
+			alert('Thred-w(mg/kg)不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.definition1 != '' && invalidChar($scope.definition1)) {
+			alert('Definition(d/r)-w不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.ref1 != '' && invalidChar($scope.ref1)) {
+			alert('Ref-w不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.thredA != '' && invalidChar($scope.thredA)) {
+			alert('Thred-a(mg/kg)不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.definition2 != '' && invalidChar($scope.definition2)) {
+			alert('Definition(d/r)-a不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.ref2 != '' && invalidChar($scope.ref2)) {
+			alert('Ref-a不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.thredO != '' && invalidChar($scope.thredO)) {
+			alert('Thred-other(mg/kg)不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.definition3 != '' && invalidChar($scope.definition3)) {
+			alert('Definition(d/r)-other不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.ref3 != '' && invalidChar($scope.ref3)) {
+			alert('Ref-other不能包含双引号或连续的破折号');
+			return false;
+		}
 		return true;
 	};
  
@@ -436,5 +480,19 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
 	};
 	
 	} ])
+	
+	function invalidChar(value) {
+		var result = false;
+		if (!value || value=="") {
+			return null;
+		}
+		if (value.indexOf("\"") >= 0) {
+			result = true;
+		}
+		if (value.indexOf("--") >= 0) {
+			result = true;
+		}
+		return result;
+	}
 
 

@@ -110,14 +110,14 @@
       <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.cas }}</div></td>
       <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.femaNo }}</div></td>
       <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.compound }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.synonyms }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><textarea ng-disabled="true"  style='height:120px;width:110%; overflow-y: auto;border:0px;resize:none;'>{{ fengWeiMiaoShu.synonyms }}</textarea></td>
       <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.formula }}</div></td>
       <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.rin }}</div></td>
       <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.rip }}</div></td>
       <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.category }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.origin }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><textarea ng-disabled="true"  style='height:120px;width:110%; overflow-y: auto;border:0px;resize:none;'>{{ fengWeiMiaoShu.origin }}</textarea></td>
       <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.flavorDesc }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ fengWeiMiaoShu.ref }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><textarea ng-disabled="true"  style='height:120px;width:120%; overflow-y: auto;border:0px;resize:none;'>{{ fengWeiMiaoShu.ref }}</textarea></td>
     </tr>
   </tbody>
 </table>
@@ -195,7 +195,7 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">Synonyms (同义词/代名词):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="synonyms" ng-disabled="false" placeholder="Synonyms (同义词/代名词)">
+    <textarea ng-model="synonyms" ng-disabled="false" placeholder="Synonyms (同义词/代名词)"></textarea>
     </div>
   </div> 
   <div class="form-group">
@@ -225,7 +225,7 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">Origin (来源-原料):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="origin" ng-disabled="false" placeholder="Origin (来源-原料)">
+    <textarea ng-model="origin" ng-disabled="false" placeholder="Origin (来源-原料)"></textarea>
     </div>
   </div>
   <div class="form-group">
@@ -237,7 +237,7 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">Ref (参考文献):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="ref" ng-disabled="false" placeholder="Ref (参考文献)">
+    <textarea ng-model="ref" ng-disabled="false" placeholder="Ref (参考文献)"></textarea>
     </div>
   </div>
 </form>
