@@ -220,6 +220,46 @@ angular.module('myApp', []).controller('fengWeiMiaoShuCtrl', [
 			alert('FEMA No应该是数字');
 			return false;
 		}
+		if ($scope.cas != '' && invalidChar($scope.cas)) {
+			alert('CAS不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.compound != '' && invalidChar($scope.compound)) {
+			alert('Compound不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.synonyms != '' && invalidChar($scope.synonyms)) {
+			alert('Synonyms不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.formula != '' && invalidChar($scope.formula)) {
+			alert('Formula不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.rin != '' && invalidChar($scope.rin)) {
+			alert('RI-n不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.rip != '' && invalidChar($scope.rip)) {
+			alert('RI-p不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.category != '' && invalidChar($scope.category)) {
+			alert('Category不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.origin != '' && invalidChar($scope.origin)) {
+			alert('Origin不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.flavorDesc != '' && invalidChar($scope.flavorDesc)) {
+			alert('Flavor description不能包含双引号或连续的破折号');
+			return false;
+		}
+		if ($scope.ref != '' && invalidChar($scope.ref)) {
+			alert('Ref不能包含双引号或连续的破折号');
+			return false;
+		}
 		return true;
 	};
  
@@ -427,6 +467,19 @@ angular.module('myApp', []).controller('fengWeiMiaoShuCtrl', [
 			result = true;
 		} else {
 			result = false;
+		}
+		return result;
+	}
+	function invalidChar(value) {
+		var result = false;
+		if (!value || value=="") {
+			return null;
+		}
+		if (value.indexOf("\"") >= 0) {
+			result = true;
+		}
+		if (value.indexOf("--") >= 0) {
+			result = true;
 		}
 		return result;
 	}
