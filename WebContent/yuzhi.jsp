@@ -99,15 +99,15 @@
       <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.yuzhiId }}</div></td>
       <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.cas }}</div></td>
       <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.compound }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.thredW }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.definition1 }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.ref1 }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.thredA }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.definition2 }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.ref2 }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.thredO }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.definition3 }}</div></td>
-      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all; "><div style='height:120px; overflow-y: auto;'>{{ yuZhi.ref3 }}</div></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all;padding:1; "><textarea ng-disabled="true"  style='height:120px;width:120%; overflow-y: auto;border:0px;resize:none;'>{{ yuZhi.thredW }}</textarea ></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all;padding:1; "><textarea ng-disabled="true"  style='height:120px;width:120%; overflow-y: auto;border:0px;resize:none;'>{{ yuZhi.definition1 }}</textarea ></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all;padding:1; "><textarea ng-disabled="true"  style='height:120px;width:120%; overflow-y: auto;border:0px;resize:none;'>{{ yuZhi.ref1 }}</textarea ></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all;padding:1; "><textarea ng-disabled="true"  style='height:120px;width:120%; overflow-y: auto;border:0px;resize:none;'>{{ yuZhi.thredA }}</textarea ></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all;padding:1; "><textarea ng-disabled="true"  style='height:120px;width:120%; overflow-y: auto;border:0px;resize:none;'>{{ yuZhi.definition2 }}</textarea ></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all;padding:1; "><textarea ng-disabled="true"  style='height:120px;width:120%; overflow-y: auto;border:0px;resize:none;'>{{ yuZhi.ref2 }}</textarea ></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all;padding:1; "><textarea ng-disabled="true"  style='height:120px;width:120%; overflow-y: auto;border:0px;resize:none;'>{{ yuZhi.thredO }}</textarea ></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all;padding:1; "><textarea ng-disabled="true"  style='height:120px;width:120%; overflow-y: auto;border:0px;resize:none;'>{{ yuZhi.definition3 }}</textarea ></td>
+      <td style="overflow:hidden;text-overflow:ellipsis;nowrap=false;word-break: break-all;padding:1; "><textarea ng-disabled="true"  style='height:120px;width:120%; overflow-y: auto;border:0px;resize:none;'>{{ yuZhi.ref3 }}</textarea ></td>
     </tr>
   </tbody>
 </table>
@@ -176,55 +176,55 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">Thred-w(mg/kg) (化合物在水里的阈值):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="thredW" ng-disabled="false" placeholder="Thred-w(mg/kg) (化合物在水里的阈值)">
+    <textarea  ng-model="thredW" ng-disabled="false" placeholder="Thred-w(mg/kg) (化合物在水里的阈值)"></textarea>
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Definition(d/r) (检测/识别):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="definition1" ng-disabled="false" placeholder="Definition(d/r) (检测/识别)">
+    <textarea  ng-model="definition1" ng-disabled="false" placeholder="Definition(d/r) (检测/识别)"></textarea>
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">Ref (参考文献):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="ref1" ng-disabled="false" placeholder="Ref (参考文献)">
+    <textarea  ng-model="ref1" ng-disabled="false" placeholder="Ref (参考文献)"></textarea>
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Thred-a(mg/m3) (化合物在空气里的阈值):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="thredA" ng-disabled="false" placeholder="Thred-a(mg/m3) (化合物在空气里的阈值)">
+    <textarea  ng-model="thredA" ng-disabled="false" placeholder="Thred-a(mg/m3) (化合物在空气里的阈值)"></textarea>
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">Definition(d/r) (检测/识别):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="definition2" ng-disabled="false" placeholder="Definition(d/r) (检测/识别)">
+    <textarea  ng-model="definition2" ng-disabled="false" placeholder="Definition(d/r) (检测/识别)"></textarea>
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Ref (参考文献):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="ref2" ng-disabled="false" placeholder="Ref (参考文献)">
+    <textarea  ng-model="ref2" ng-disabled="false" placeholder="Ref (参考文献)"></textarea>
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">Thred-other(mg/kg) (化合物在其他介质里的阈值):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="thredO" ng-disabled="false" placeholder="Thred-other(mg/kg) (化合物在其他介质里的阈值)">
+    <textarea  ng-model="thredO" ng-disabled="false" placeholder="Thred-other(mg/kg) (化合物在其他介质里的阈值)"></textarea>
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Definition(d/r) (检测/识别):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="definition3" ng-disabled="false" placeholder="Definition(d/r) (检测/识别)">
+    <textarea  ng-model="definition3" ng-disabled="false" placeholder="Definition(d/r) (检测/识别)"></textarea>
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">Ref (参考文献):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="ref3" ng-disabled="false" placeholder="Ref (参考文献)">
+    <textarea  ng-model="ref3" ng-disabled="false" placeholder="Ref (参考文献)"></textarea>
     </div>
   </div>
 </form>
