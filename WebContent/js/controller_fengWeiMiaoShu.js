@@ -378,6 +378,9 @@ angular.module('myApp', []).controller('fengWeiMiaoShuCtrl', [
 	  		$scope.fengWeiMiaoShuModel = $scope.pageOption.currentData;
 		}
 		
+		var lastPage = parseInt($scope.pageOption.totalCount/$scope.pageOption.pageSize)+1;
+		$scope.pageOption.lastPage = lastPage;
+		
 		if ($scope.pageOption.pageSize == 25) {
 			var pageSize25 = document.getElementById('pageSize25');
 			pageSize25.style.color='#333';
