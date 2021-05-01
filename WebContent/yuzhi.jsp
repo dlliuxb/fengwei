@@ -164,67 +164,67 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">CAS (化合物的CAS号):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="cas" ng-disabled="false" placeholder="CAS (化合物的CAS号)">
+    <input type="text" ng-model="cas" ng-disabled="false" placeholder="CAS (化合物的CAS号)"><span>最大长度50字符</span>
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Compound (化合物名称):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="compound" ng-disabled="false" placeholder="Compound (化合物名称)">
+    <input type="text" ng-model="compound" ng-disabled="false" placeholder="Compound (化合物名称)"><span>最大长度100字符</span>
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">Thred-w(mg/kg) (化合物在水里的阈值):</label>
     <div class="col-sm-10">
-    <textarea  ng-model="thredW" ng-disabled="false" placeholder="Thred-w(mg/kg) (化合物在水里的阈值)"></textarea>
+    <textarea  ng-model="thredW" ng-disabled="false" placeholder="Thred-w(mg/kg) (化合物在水里的阈值)"></textarea><span>最大长度800字符</span>
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Definition(d/r) (检测/识别):</label>
     <div class="col-sm-10">
-    <textarea  ng-model="definition1" ng-disabled="false" placeholder="Definition(d/r) (检测/识别)"></textarea>
+    <textarea  ng-model="definition1" ng-disabled="false" placeholder="Definition(d/r) (检测/识别)"></textarea><span>最大长度50字符</span>
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">Ref (参考文献):</label>
     <div class="col-sm-10">
-    <textarea  ng-model="ref1" ng-disabled="false" placeholder="Ref (参考文献)"></textarea>
+    <textarea  ng-model="ref1" ng-disabled="false" placeholder="Ref (参考文献)"></textarea><span>最大长度2000字符</span>
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Thred-a(mg/m3) (化合物在空气里的阈值):</label>
     <div class="col-sm-10">
-    <textarea  ng-model="thredA" ng-disabled="false" placeholder="Thred-a(mg/m3) (化合物在空气里的阈值)"></textarea>
+    <textarea  ng-model="thredA" ng-disabled="false" placeholder="Thred-a(mg/m3) (化合物在空气里的阈值)"></textarea><span>最大长度800字符</span>
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">Definition(d/r) (检测/识别):</label>
     <div class="col-sm-10">
-    <textarea  ng-model="definition2" ng-disabled="false" placeholder="Definition(d/r) (检测/识别)"></textarea>
+    <textarea  ng-model="definition2" ng-disabled="false" placeholder="Definition(d/r) (检测/识别)"></textarea><span>最大长度50字符</span>
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Ref (参考文献):</label>
     <div class="col-sm-10">
-    <textarea  ng-model="ref2" ng-disabled="false" placeholder="Ref (参考文献)"></textarea>
+    <textarea  ng-model="ref2" ng-disabled="false" placeholder="Ref (参考文献)"></textarea><span>最大长度200字符</span>
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">Thred-other(mg/kg) (化合物在其他介质里的阈值):</label>
     <div class="col-sm-10">
-    <textarea  ng-model="thredO" ng-disabled="false" placeholder="Thred-other(mg/kg) (化合物在其他介质里的阈值)"></textarea>
+    <textarea  ng-model="thredO" ng-disabled="false" placeholder="Thred-other(mg/kg) (化合物在其他介质里的阈值)"></textarea><span>最大长度1800字符</span>
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Definition(d/r) (检测/识别):</label>
     <div class="col-sm-10">
-    <textarea  ng-model="definition3" ng-disabled="false" placeholder="Definition(d/r) (检测/识别)"></textarea>
+    <textarea  ng-model="definition3" ng-disabled="false" placeholder="Definition(d/r) (检测/识别)"></textarea><span>最大长度50字符</span>
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">Ref (参考文献):</label>
     <div class="col-sm-10">
-    <textarea  ng-model="ref3" ng-disabled="false" placeholder="Ref (参考文献)"></textarea>
+    <textarea  ng-model="ref3" ng-disabled="false" placeholder="Ref (参考文献)"></textarea><span>最大长度2000字符</span>
     </div>
   </div>
 </form>
