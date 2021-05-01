@@ -260,6 +260,50 @@ angular.module('myApp', []).controller('fengWeiMiaoShuCtrl', [
 			alert('Ref不能包含双引号或连续的破折号');
 			return false;
 		}
+		if ($scope.cas != '' && $scope.cas.length>50) {
+			alert('CAS长度不能超过50字符');
+			return false;
+		}
+		if ($scope.femaNo != '' && $scope.femaNo.length>10) {
+			alert('FEMA No长度不能超过10位数字');
+			return false;
+		}
+		if ($scope.compound != '' && $scope.compound.length>100) {
+			alert('Compound长度不能超过100字符');
+			return false;
+		}
+		if ($scope.synonyms != '' && $scope.synonyms.length>1000) {
+			alert('Synonyms长度不能超过1000字符');
+			return false;
+		}
+		if ($scope.formula != '' && $scope.formula.length>30) {
+			alert('Formula长度不能超过30字符');
+			return false;
+		}
+		if ($scope.rin != '' && $scope.rin.length>30) {
+			alert('RI-n长度不能超过30字符');
+			return false;
+		}
+		if ($scope.rip != '' && $scope.rip.length>30) {
+			alert('RI-p长度不能超过30字符');
+			return false;
+		}
+		if ($scope.category != '' && $scope.category.length>50) {
+			alert('Category长度不能超过50字符');
+			return false;
+		}
+		if ($scope.origin != '' && $scope.origin.length>600) {
+			alert('Origin长度不能超过600字符');
+			return false;
+		}
+		if ($scope.flavorDesc != '' && $scope.flavorDesc.length>200) {
+			alert('Flavor Description长度不能超过200字符');
+			return false;
+		}
+		if ($scope.ref != '' && $scope.ref.length>5000) {
+			alert('Ref长度不能超过5000字符');
+			return false;
+		}
 		return true;
 	};
  

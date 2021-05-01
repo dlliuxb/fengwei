@@ -174,7 +174,7 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">CAS (化合物的CAS号):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="cas" name="cas" placeholder="CAS (化合物的CAS号)" required>
+    <input type="text" ng-model="cas" name="cas" placeholder="CAS (化合物的CAS号)" required><span>最大长度50字符</span>
     <span style="color:red" ng-show="$scope.cas.$dirty && $scope.cas.$invalid">
 	<span ng-show="$scope.user.$error.required">CAS是必须的。</span>
 	</span>
@@ -183,61 +183,61 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">FEMA No (FEMA编号):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="femaNo" ng-disabled="false" placeholder="FEMA No (FEMA编号)">
+    <input type="text" ng-model="femaNo" ng-disabled="false" placeholder="FEMA No (FEMA编号)"><span>最大长度10位数字</span>
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">Compound (化合物名称):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="compound" ng-disabled="false" placeholder="Compound (化合物名称)">
+    <input type="text" ng-model="compound" ng-disabled="false" placeholder="Compound (化合物名称)"><span>最大长度100字符</span>
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Synonyms (同义词/代名词):</label>
     <div class="col-sm-10">
-    <textarea ng-model="synonyms" ng-disabled="false" placeholder="Synonyms (同义词/代名词)"></textarea>
+    <textarea ng-model="synonyms" ng-disabled="false" placeholder="Synonyms (同义词/代名词)"></textarea><span>最大长度1000字符</span>
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">Formula (分子式):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="formula" ng-disabled="false" placeholder="Formula (分子式)">
+    <input type="text" ng-model="formula" ng-disabled="false" placeholder="Formula (分子式)"><span>最大长度30字符</span>
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">RI-n (非极性保留指数):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="rin" ng-disabled="false" placeholder="RI-n (非极性保留指数)">
+    <input type="text" ng-model="rin" ng-disabled="false" placeholder="RI-n (非极性保留指数)"><span>最大长度30字符</span>
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">RI-p (极性保留指数):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="rip" ng-disabled="false" placeholder="RI-p (极性保留指数)">
+    <input type="text" ng-model="rip" ng-disabled="false" placeholder="RI-p (极性保留指数)"><span>最大长度30字符</span>
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Category (来源类别):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="category" ng-disabled="false" placeholder="Category (来源类别)">
+    <input type="text" ng-model="category" ng-disabled="false" placeholder="Category (来源类别)"><span>最大长度50字符</span>
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">Origin (来源-原料):</label>
     <div class="col-sm-10">
-    <textarea ng-model="origin" ng-disabled="false" placeholder="Origin (来源-原料)"></textarea>
+    <textarea ng-model="origin" ng-disabled="false" placeholder="Origin (来源-原料)"></textarea><span>最大长度600字符</span>
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Flavor description (风味描述):</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="flavorDesc" ng-disabled="false" placeholder="Flavor description (风味描述)">
+    <input type="text" ng-model="flavorDesc" ng-disabled="false" placeholder="Flavor description (风味描述)"><span>最大长度200字符</span>
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">Ref (参考文献):</label>
     <div class="col-sm-10">
-    <textarea ng-model="ref" ng-disabled="false" placeholder="Ref (参考文献)"></textarea>
+    <textarea ng-model="ref" ng-disabled="false" placeholder="Ref (参考文献)"></textarea><span>最大长度5000字符</span>
     </div>
   </div>
 </form>
