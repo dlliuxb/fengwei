@@ -287,6 +287,51 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
 			alert('Ref-other不能包含双引号或连续的破折号');
 			return false;
 		}
+		if ($scope.cas != '' && $scope.cas.length>50) {
+			alert('CAS长度不能超过50字符');
+			return false;
+		}
+		if ($scope.compound != '' && $scope.compound.length>100) {
+			alert('Compound长度不能超过100字符');
+			return false;
+		}
+		if ($scope.thredW != '' && $scope.thredW.length>800) {
+			alert('Thred-w长度不能超过800字符');
+			return false;
+		}
+		
+		if ($scope.definition1 != '' && $scope.definition1.length>50) {
+			alert('Definition-w长度不能超过50字符');
+			return false;
+		}
+		if ($scope.ref1 != '' && $scope.ref1.length>2000) {
+			alert('Ref-w长度不能超过2000字符');
+			return false;
+		}
+		if ($scope.thredA != '' && $scope.thredA.length>800) {
+			alert('Thred-a长度不能超过800字符');
+			return false;
+		}
+		if ($scope.definition2 != '' && $scope.definition2.length>50) {
+			alert('Definition-a长度不能超过50字符');
+			return false;
+		}
+		if ($scope.ref2 != '' && $scope.ref2.length>200) {
+			alert('Ref-a长度不能超过200字符');
+			return false;
+		}
+		if ($scope.thredO != '' && $scope.thredO.length>1800) {
+			alert('Thred-other长度不能超过1800字符');
+			return false;
+		}
+		if ($scope.definition3 != '' && $scope.definition3.length>50) {
+			alert('Definition-other长度不能超过50字符');
+			return false;
+		}
+		if ($scope.ref3 != '' && $scope.ref3.length>2000) {
+			alert('Ref-other长度不能超过2000字符');
+			return false;
+		}
 		return true;
 	};
  
