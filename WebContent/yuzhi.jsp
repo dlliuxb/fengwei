@@ -206,7 +206,7 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">Ref (参考文献):</label>
     <div class="col-sm-10">
-    <textarea  ng-model="ref2" ng-disabled="false" placeholder="Ref (参考文献)"></textarea><span>最大长度200字符</span>
+    <textarea  ng-model="ref2" ng-disabled="false" placeholder="Ref (参考文献)"></textarea><span>最大长度2000字符</span>
     </div>
   </div> 
   <div class="form-group">
