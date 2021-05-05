@@ -316,8 +316,8 @@ angular.module('myApp', []).controller('yuZhiCtrl', [
 			alert('Definition-a长度不能超过50字符');
 			return false;
 		}
-		if ($scope.ref2 != '' && $scope.ref2.length>200) {
-			alert('Ref-a长度不能超过200字符');
+		if ($scope.ref2 != '' && $scope.ref2.length>2000) {
+			alert('Ref-a长度不能超过2000字符');
 			return false;
 		}
 		if ($scope.thredO != '' && $scope.thredO.length>1800) {
